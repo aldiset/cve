@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uuid = "*"
+uvicorn = "*"
+requests = "*"
+pandas = "*"
+openpyxl = "*"
+googletrans = "==3.1.0a0"
+sqlalchemy = "*"
+alembic = "*"
+jinja2 = "*"
+pdfkit = "*"
+pdfcrowd = "*"
+fpdf = "*"
+html2pdf = "*"
+xhtml2pdf = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

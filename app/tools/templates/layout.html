@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block page1 %}
+<h4>Report</h4>
+<h6>{{cve}}</h6>
+<hr>
+<p>
+    <th>Requested by</th>
+    <th></th>
+    <th>{{requested_by}}</th>
+    <br>
+    <th>Request date</th>
+    <th></th>
+    <th>{{requested_date}}</th>
+</p>
+{% for definition in definitions %}
+<h5>What is {{(definition.key).upper()}} ?</h5>
+<p>{{definition.value}} <a href="{{definition.source}}">more</a> </p>
+{% endfor %}
+{% endblock page1 %}
+
+{% block page2 %}
+<h6>CVE ID - {{cve}}</h6>
+<h6>CWE ID - {{cwe}}</h6>
+<h6>CVSS SC- {{cvss}}</h6>
+<br>
+<table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>CAPEC ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Solution</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in datas %}
+        <tr>
+          <td>{{ data.id }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.summary }}</td>
+          <td>{{ data.solutions }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock page2 %}
+
+{% block page3 %}
+<table class="table table-bordered" >
+  <thead>
+    <tr>
+      <th>CAPEC ID</th>
+      <th>Name</th>
+      <th>STEP 1</th>
+      <th>STEP 2</th>
+      <th>STEP 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for capec in capecs %}
+      {% for data in datas %}
+        <tr>
+          <td>{{ capec.id }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ capec.step1 if capec.step1 is not none else "" }}</td>
+          <td>{{ capec.step2 if capec.step2 is not none else "" }}</td>
+          <td>{{ capec.step3 if capec.step3 is not none else "" }}</td>
+        </tr>
+      {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock page3 %}
