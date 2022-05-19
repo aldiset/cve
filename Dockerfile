@@ -1,4 +1,4 @@
-FROM tiangolo/uvicorn-gunicorn:python3.8
+FROM python:3.8.13-slim
 
 RUN pip3 install pipenv
 
@@ -12,9 +12,7 @@ RUN set -ex && pipenv install --deploy --system
 
 COPY . /app
 ENV PYTHONPATH=/app
-
-CMD ["alembic","upgrade","head"]
-
+CMD [""]
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9999"]
 
-EXPOSE 3030
+EXPOSE 9999

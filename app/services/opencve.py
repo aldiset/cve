@@ -3,7 +3,7 @@ import requests
 from app.tools.translate import TranslateText
 
 
-host = " https://www.opencve.io/api"
+host = "https://www.opencve.io/api"
 
 
 class OpenCve:

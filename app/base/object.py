@@ -86,7 +86,8 @@ class ObjectClass():
             if lang != "en" and capecs != []:
                 for capec in capecs:
                     for key, value in capec.items():
-                        if key != "id" or key != "capec_id" or key != "created_date" or key != "updated_date" or key!= "deleted_date":
+                        if (key != "id" or key != "capec_id" or key != "created_date" or 
+                        key != "updated_date" or key!= "deleted_date"):
                             capec[key] = await TranslateText.translate_text(lang=lang, text=value)
 
             return data, capecs
@@ -99,6 +100,12 @@ class ObjectClass():
         with session_manager() as db:
             data = await CRUDCAPEC.get_capec_by_id(db=db, filters=filters)
             if data is not False:
+                data.mitigations = await TranslateText.translate_text(lang=lang, text=data.mitigations)
+                data.example_instances = await TranslateText.translate_text(lang=lang, text=data.example_instances)
+                data.prerequisites = await TranslateText.translate_text(lang=lang, text=data.prerequisites)
+                data.skills_required = await TranslateText.translate_text(lang=lang, text=data.skills_required)
+                data.description = await TranslateText.translate_text(lang=lang, text=data.description)
+                
                 return True, data
             else:
                 return data, {}

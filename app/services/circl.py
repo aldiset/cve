@@ -1,15 +1,12 @@
 import requests
-
 from app.tools.translate import TranslateText
 
 host = 'https://cve.circl.lu/api/cve/'
-
 
 class CirlLu:
     endpoints = {
         "CVE":host+"{}"
     }
-
     @classmethod
     async def get_cve_detail(cls,lang:str = None,cve_id: str = None ):
         url = cls.endpoints["CVE"].format(cve_id)
@@ -25,9 +22,12 @@ class CirlLu:
                         capec_dict = {
                             'id': capec.get("id"),
                             'name': capec.get("name"),
-                            'prerequisites': await TranslateText.translate_text(lang=lang, text = capec.get("prerequisites")),
-                            'solutions' : await TranslateText.translate_text(lang=lang, text = capec.get("solutions")),
-                            'summary' : await TranslateText.translate_text(lang = lang, text = capec.get("summary"))
+                            'prerequisites': await TranslateText.translate_text(
+                                            lang=lang, text = capec.get("prerequisites")),
+                            'solutions' : await TranslateText.translate_text(
+                                            lang=lang, text = capec.get("solutions")),
+                            'summary' : await TranslateText.translate_text(
+                                            lang = lang, text = capec.get("summary"))
                         }
                         capec_translate.append(capec_dict)
                     datas.pop("capec")

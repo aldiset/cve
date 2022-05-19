@@ -14,11 +14,7 @@ class MainClass:
         app = FastAPI(
             title="Vulnerability Detail", 
             docs_url="/api/vuln/docs", 
-            openapi_url="/api/vuln/openapi.json",
-            servers=[
-                {"url": "http://127.0.0.1:9999", "description": "Local Environment"},
-                {"url": "https://37a6-36-80-240-9.ngrok.io ", "description": "Ngrok Environment"}
-            ])
+            openapi_url="/api/vuln/openapi.json")
         
         #mount static files
         app.mount("/assets", StaticFiles(directory="assets"), name="assets")

@@ -19,15 +19,15 @@ class ConvertToPDF():
             autoescape=jinja2.select_autoescape()
         )
 
-        # try:
-        template = env.get_template(templates)
-        html = template.render(data)
+        try:
+            template = env.get_template(templates)
+            html = template.render(data)
 
-        result_file = open(filepath, "w+b")
-        pisa.CreatePDF(src=html,dest=result_file)
-        result_file.close() 
-        return filepath, filename
-        # except:
-        #     return False, False
+            result_file = open(filepath, "w+b")
+            pisa.CreatePDF(src=html,dest=result_file)
+            result_file.close() 
+            return filepath, filename
+        except:
+            return False, False
         
         
