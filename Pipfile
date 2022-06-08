@@ -23,6 +23,7 @@ colorama = "*"
 pytest = "*"
 httpx = "*"
 trio = "*"
+pypdf2 = "*"
 
 [dev-packages]
 

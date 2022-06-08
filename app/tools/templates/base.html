@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
     <title>Report</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-</head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+          }
+    </style>
 <body>
     <page size="A4">
         {% block page1 %}{% endblock %}
-    </page>
-    <page size="A4">
+
         {% block page2 %}{% endblock%}
-    </page>
-    <page size="A4">
+
         {% block page3 %}{% endblock%}
     </page>
 </body>

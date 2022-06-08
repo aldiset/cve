@@ -11,4 +11,3 @@ def get():
     return response.json()
 
 data = get()
-print(data)

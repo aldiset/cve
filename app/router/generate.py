@@ -23,7 +23,7 @@ async def get_detail_cve_to_excel(
     filepath, filename = await object.get_details_cve_by_id(lang=lang,cve_id=cve_id,requested_by=requested_by, file=True)
 
     """Data not found"""
-    if filepath and filename == "":
+    if filepath == "" and filename == "":
         return HTTPException(status_code=404, detail="Data not Found")
     
     background_task.add_task(RemoveFile.remove_file,filepath)
@@ -33,19 +33,27 @@ async def get_detail_cve_to_excel(
 async def get_detail_cve_to_pdf(background_task: BackgroundTasks, lang: str = "en", cve_id: str = None, requested_by: str = "guest"):
     definition = await object.get_definition_data(lang=lang)
     data, capec = await object.get_data_to_pdf(lang=lang, cve_id=cve_id)
+
     context={
-        "requested_by": requested_by,
-        "requested_date": datetime.now().date(),
-        "definitions":definition,
-        "cve": data.get("id"),
-        "cwe": data.get("cwe"),
-        "cvss": data.get("cvss"),
-        "datas":data.get("capec") if data.get("capec") is not None else [],
-        "capecs":capec
+        "first_data":{
+            "requested_by": requested_by,
+            "requested_date": datetime.now().date(),
+            "definitions":definition
+        },
+        "second_data":{
+            "cve": data.get("id"),
+            "cwe": data.get("cwe"),
+            "cvss": data.get("cvss"),
+            "datas":data.get("capec") if data.get("capec") is not None else []
+        },
+        "three_data":{
+            "datas":data.get("capec") if data.get("capec") is not None else [],
+            "capecs":capec
+        }
     }
 
     filepath, filename = await ConvertToPDF.convert_to_pdf(cve_id=cve_id,data=context)
-    if filepath and filename is False:
+    if filepath is False and filename is False:
         return HTTPException(status_code=404, detail="Data not Found")
 
     background_task.add_task(RemoveFile.remove_file,filepath)

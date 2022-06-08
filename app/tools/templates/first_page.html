@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block page1 %}
+<h1>Report</h1>
+<h2>{{cve}}</h2>
+<hr>
+<p>
+    <th>Requested by</th>
+    <th></th>
+    <th>{{requested_by}}</th>
+    <br>
+    <th>Request date</th>
+    <th></th>
+    <th>{{requested_date}}</th>
+</p>
+{% for definition in definitions %}
+<h3>What is {{(definition.key).upper()}} ?</h3>
+<p>{{definition.value}} <a href="{{definition.source}}">more</a> </p>
+{% endfor %}
+{% endblock page1 %}

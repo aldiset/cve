@@ -18,6 +18,7 @@ class MainClass:
         
         #mount static files
         app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+        app.mount("/search", StaticFiles(directory="search"), name="search")
         templates = Jinja2Templates(directory="templates")
         
         #tampilan halaman dokumentasi

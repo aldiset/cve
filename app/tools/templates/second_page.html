@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block page2 %}
+<h6>CVE ID - {{cve}}</h6>
+<h6>CWE ID - {{cwe}}</h6>
+<h6>CVSS SC- {{cvss}}</h6>
+<br>
+<table class="table" >
+    <thead>
+      <tr>
+        <th>CAPEC ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Solution</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in datas %}
+        <tr>
+          <td>{{ data.id }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.summary }}</td>
+          <td>{{ data.solutions }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock page2 %}

@@ -15,4 +15,3 @@ def get(cve_id, lang):
     return response.json()
 
 data = get(cve_id="CVE-2022-21664",lang="id")
-print(data)
