@@ -89,6 +89,10 @@ class ObjectClass():
                         if (key != "id" or key != "capec_id" or key != "created_date" or 
                         key != "updated_date" or key!= "deleted_date"):
                             capec[key] = await TranslateText.translate_text(lang=lang, text=value)
+            
+            if capecs != []:
+                for i in range(len(capecs)):
+                    capecs[i]["name"] = data["capec"][i]["name"]
 
             return data, capecs
 

@@ -13,15 +13,13 @@
   </thead>
   <tbody>
     {% for capec in capecs %}
-      {% for data in datas %}
-        <tr>
-          <td>{{ capec.id }}</td>
-          <td>{{ data.name }}</td>
-          <td>{{ capec.step1 if capec.step1 is not none else "" }}</td>
-          <td>{{ capec.step2 if capec.step2 is not none else "" }}</td>
-          <td>{{ capec.step3 if capec.step3 is not none else "" }}</td>
-        </tr>
-      {% endfor %}
+      <tr>
+        <td>{{ capec.capec_id }}</td>
+        <td>{{ capec.name }}</td>
+        <td>{{ capec.step1 if capec.step1 is not none else "" }}</td>
+        <td>{{ capec.step2 if capec.step2 is not none else "" }}</td>
+        <td>{{ capec.step3 if capec.step3 is not none else "" }}</td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>

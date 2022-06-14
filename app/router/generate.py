@@ -32,8 +32,10 @@ async def get_detail_cve_to_excel(
 @router.get("/{cve_id}/pdf", response_description=".pdf")
 async def get_detail_cve_to_pdf(background_task: BackgroundTasks, lang: str = "en", cve_id: str = None, requested_by: str = "guest"):
     definition = await object.get_definition_data(lang=lang)
-    data, capec = await object.get_data_to_pdf(lang=lang, cve_id=cve_id)
-
+    data, capecs = await object.get_data_to_pdf(lang=lang, cve_id=cve_id)
+    if data in [""]:
+        return HTTPException(status_code=404, detail="Data not Found")
+        
     context={
         "first_data":{
             "requested_by": requested_by,
@@ -47,8 +49,7 @@ async def get_detail_cve_to_pdf(background_task: BackgroundTasks, lang: str = "e
             "datas":data.get("capec") if data.get("capec") is not None else []
         },
         "three_data":{
-            "datas":data.get("capec") if data.get("capec") is not None else [],
-            "capecs":capec
+            "capecs":capecs
         }
     }
 
