@@ -24,6 +24,7 @@ pytest = "*"
 httpx = "*"
 trio = "*"
 pypdf2 = "*"
+bandit = "*"
 
 [dev-packages]
 
